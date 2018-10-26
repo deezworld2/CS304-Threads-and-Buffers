@@ -38,7 +38,7 @@ The entirety of this project is written in Java.
      * ```public Consumer(BoundedBuffer b , String n)``` constructor that initializes ```buffer``` to ```b``` and ```name``` to ```n```.
      * ```public void run()``` starts the consumer thread and runs indefinitely. The method begins by creating an item to remove from the buffer, ```Integer message```. The method then generates a random number between 1 and ```BoundedBuffer.CNAP_TIME``` to sleep for (in milliseconds). The method prints that the consumer is sleeping as well as the amount of time that it is sleeping for. The consumer will then sleep for the amount of time selected * 1000 to convert to seconds. The method will then print that the consumer is ready to consume. The method will remove an item from the buffer using ```message = (Integer)buffer.remove()```. The method will finally print the name of the consumer and the value of the item that it consumed. 
   * ### Server.java
-    This is the driver class of the project. This is where use of all of the classes are exercised. The ```main``` method begins by creating two ```BoundedBuffer``` objects to be shared by producers and consumers.
+    This is the driver class of the project. This is where all of the classes are put to use. The ```main``` method begins by creating two ```BoundedBuffer``` objects to be shared by producers and consumers.
     ```
     BoundedBuffer server1 = new BoundedBuffer();
     BoundedBuffer server2 = new BoundedBuffer(); 
@@ -49,4 +49,11 @@ The entirety of this project is written in Java.
     Consumer consumerThread1 = new Consumer(server1, "Mary");
     Producer producerThread2 = new Producer(server2, "Liz");
     Consumer consumerThread2 = new Consumer(server2, "Bert");
+    ```
+    Finally, the ```run()``` methods of the ```Producer``` and ```Consumer``` objects are invoked using the ```start()``` method inherited from ```Thread```.
+    ```
+    producerThread1.start();
+    consumerThread1.start();
+		producerThread2.start();
+		consumerThread2.start();
     ```
