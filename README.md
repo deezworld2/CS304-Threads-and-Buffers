@@ -27,5 +27,12 @@ The entirety of this project is written in Java.
       * ```private BoundedBuffer buffer``` holds the items that are produced by ```Producer```.
       * ```public String name``` holds the name of the producer.
      #### Methods
-      * ```public Producer(BoundedBuffer b, String n)``` constructor that initialized the ```buffer``` variable to ```b``` and ```name``` to ```n```.
+      * ```public Producer(BoundedBuffer b, String n)``` constructor that initializes the ```buffer``` variable to ```b``` and ```name``` to ```n```.
       * ```public void run()``` starts the producer thread and runs indefinitely. The method begins by creating an item to place in the buffer, ```Integer message```. The method then generates a random number between 1 and ```BoundedBuffer.PNAP_TIME``` to sleep for (in milliseconds). The method prints that the producer is sleeping as well as the amount of time that it will sleep for. The producer will then sleep for the amount of time selected * 1000 to convert to seconds. The method will generate another random number, this time between 8,000 and 50,000 to store in ```message```. The method prints the name of the producer and the value that it produced, and then it places that value into the buffer via ```buffer.enter(message)```.
+   * ### Consumer.java
+     This class contains the code for the ```Consumer``` class. A ```Consumer``` sleeps for a random amount of time, then takes items that are placed into a buffer by ```Producer``` and consumes them. __NOTE:__ ```Consumer``` ```extends Thread```.
+     #### Structures and Variables
+     * ```private BoundedBuffer buffer``` holds the items to be consumed.
+     * ```public String name``` holds the name of the consumer.
+     * ```
+      
