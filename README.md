@@ -20,3 +20,4 @@ The entirety of this project is written in Java.
       #### Methods
       * ```public BoundedBuffer()``` default constructor that initializes ```count```, ```in```, and ```out``` to 0 and initializes ```buffer``` to an array of size ```BUFFER_SIZE``` and type ```Object```.
       * ```public void enter(Object item)``` checks to see if the buffer is full. If it is full, a full buffer message is printed. If the buffer is not full, the method increments ```count``` and places ```item``` at the ```buffer[in]``` position. ```in``` is then moved to the next position in the buffer.
+      * ```public Object remove()``` checks to see if there is anything in the buffer. If the buffer is empty, an empty buffer message is printed. If there is an item in the buffer, the method deincrements ```count``` and removes the item at ```buffer[out]```. The method moves ```out``` to point to the next place in the buffer, then returns the item that was removed. 
