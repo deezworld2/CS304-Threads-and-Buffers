@@ -37,4 +37,15 @@ The entirety of this project is written in Java.
      #### Methods
      * ```public Consumer(BoundedBuffer b , String n)``` constructor that initializes ```buffer``` to ```b``` and ```name``` to ```n```.
      * ```public void run()``` starts the consumer thread and runs indefinitely. The method begins by creating an item to remove from the buffer, ```Integer message```. The method then generates a random number between 1 and ```BoundedBuffer.CNAP_TIME``` to sleep for (in milliseconds). The method prints that the consumer is sleeping as well as the amount of time that it is sleeping for. The consumer will then sleep for the amount of time selected * 1000 to convert to seconds. The method will then print that the consumer is ready to consume. The method will remove an item from the buffer using ```message = (Integer)buffer.remove()```. The method will finally print the name of the consumer and the value of the item that it consumed. 
-      
+  * ### Server.java
+    This is the driver class of the project. This is where use of all of the classes are exercised. The ```main``` method begins by creating two ```BoundedBuffer``` objects to be shared by producers and consumers.
+    ```
+    BoundedBuffer server1 = new BoundedBuffer();
+		BoundedBuffer server2 = new BoundedBuffer(); 
+    ```
+    Two sets of ```Producer``` and ```Consumer``` objects are created to operate with the buffers. Each producer is set to share a buffer with exactly one consumer, and vice versa.
+    ```
+    	Producer producerThread1 = new Producer(server1, "John");
+      Consumer consumerThread1 = new Consumer(server1, "Mary");
+			Producer producerThread2 = new Producer(server2, "Liz");
+			Consumer consumerThread2 = new Consumer(server2, "Bert");
