@@ -11,4 +11,12 @@ The entirety of this project is written in Java.
      #### Structures and Variables
       * ```public static final int PNAP_TIME``` holds the maximum number of seconds for producers to sleep.
       * ```public static final int CNAP_TIME``` holds the maximum number of seconds for consumers to sleep.
-
+      * ```private static final int BUFFER_SIZE``` holds the size of the buffer.
+      * ```privste volatile int count``` keeps track of the number of items in the buffer.
+      * ```private int in``` points to the next free position in the buffer.
+      * ```private int out``` points to the next full position in the buffer.
+      * ```private Object[] buffer``` holds all of the objects to be used by the producer and the consumer.
+      
+      #### Methods
+      * ```public BoundedBuffer()``` default constructor that initializes ```count```, ```in```, and ```out``` to 0 and initializes ```buffer``` to an array of size ```BUFFER_SIZE``` and type ```Object```.
+      * ```public void enter(Object item)``` checks to see if the buffer is full. If it is full, a full buffer message is printed. If the buffer is not full, the method increments ```count``` and places ```item``` at the ```buffer[in]``` position. ```in``` is then moved to the next position in the buffer.
